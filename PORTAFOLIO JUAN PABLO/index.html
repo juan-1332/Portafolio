@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080d1a">
+    <meta name="description" content="Portafolio de Juan Pablo Castro — Desarrollador de Software en formación & Técnico en Sistemas (Campuslands / SENA). Santander, Colombia.">
+    <title>Juan Pablo Castro — Dev & System Tech</title>
+    
+    <!-- Fuentes Google: Plus Jakarta Sans (sans-serif) & JetBrains Mono (code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+    <!-- CDN Tailwind CSS para utilidades ágiles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                dark: '#080d1a',
+                card: 'rgba(15, 23, 42, 0.75)',
+                border: 'rgba(0, 242, 254, 0.15)',
+                cyan: '#00f2fe',
+                blue: '#4facfe',
+                green: '#00ff87',
+                purple: '#7928ca',
+                muted: '#94a3b8'
+              }
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace']
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      /* Reset & Variables */
+      :root {
+        color-scheme: dark;
+        --cyan-glow: rgba(0, 242, 254, 0.4);
+        --blue-glow: rgba(79, 172, 254, 0.3);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+      }
+
+      body {
+        background-color: #080d1a;
+        color: #f1f5f9;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        overflow-x: hidden;
+        background-image: 
+          radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+          radial-gradient(circle at 85% 65%, rgba(121, 40, 202, 0.06) 0%, transparent 40%),
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      }
+
+      ::selection {
+        background: #00f2fe;
+        color: #080d1a;
+      }
+
+      /* Scrollbar Personalizada */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #080d1a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e293b;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 242, 254, 0.2);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00f2fe;
+      }
+
+      /* Glassmorphism Styling */
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 242, 254, 0.12);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+
+      .glass-panel-hover {
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .glass-panel-hover:hover,
+      .project-card:hover,
+      .card-hover-effect:hover {
+        border-color: rgba(0, 242, 254, 0.6) !important;
+        box-shadow: 0 16px 32px -8px rgba(0, 242, 254, 0.25), 0 0 25px rgba(0, 242, 254, 0.2) !important;
+        transform: translateY(-8px) scale(1.02);
+      }
+
+      /* Enlace activo de navegación con brillo e indicador neón */
+      .nav-link.active {
+        color: #00f2fe !important;
+        background-color: rgba(0, 242, 254, 0.1);
+        border-bottom: 2px solid #00f2fe;
+        text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+      }
+
+      /* Animaciones de Código / Persona Hero */
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(0.5deg); }
+      }
+
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.6)); }
+        50% { opacity: 0.9; filter: drop-shadow(0 0 30px rgba(0, 242, 254, 0.9)); }
+      }
+
+      @keyframes codeFly {
+        0% { transform: translateY(20px); opacity: 0; }
+        30% { opacity: 1; }
+        80% { opacity: 0.8; }
+        100% { transform: translateY(-60px); opacity: 0; }
+      }
+
+      @keyframes screenBlink {
+        0%, 90%, 100% { opacity: 1; }
+        95% { opacity: 0.85; }
+      }
+
+      .hero-dev-wrapper {
+        animation: floatSlow 6s ease-in-out infinite;
+      }
+
+      .screen-glow {
+        animation: pulseGlow 4s ease-in-out infinite;
+      }
+
+      .floating-code-1 { animation: codeFly 5s ease-in-out infinite 0.5s; }
+      .floating-code-2 { animation: codeFly 6s ease-in-out infinite 2s; }
+      .floating-code-3 { animation: codeFly 5.5s ease-in-out infinite 3.5s; }
+
+      /* Ticker Infinito */
+      @keyframes tickerSlide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .ticker-animate {
+        display: flex;
+        width: max-content;
+        animation: tickerSlide 25s linear infinite;
+      }
+      .ticker-animate:hover {
+        animation-play-state: paused;
+      }
+
+      /* Glow Effects */
+      .text-glow-cyan {
+        text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+      }
+      .text-glow-green {
+        text-shadow: 0 0 12px rgba(0, 255, 135, 0.5);
+      }
+
+      /* Elementos Reveal Observer */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Gradient Text */
+      .grad-text-cyan {
+        background: linear-gradient(135deg, #ffffff 20%, #00f2fe 70%, #4facfe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .grad-text-green {
+        background: linear-gradient(135deg, #ffffff 30%, #00ff87 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body class="relative min-h-screen selection:bg-cyber-cyan selection:text-cyber-dark">
+
+    <!-- Skip Link Accesibilidad -->
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:z-50 focus:p-4 focus:bg-cyber-cyan focus:text-cyber-dark font-bold rounded-lg top-4 left-4">Saltar al contenido</a>
+
+    <!-- Círculo de Luz Seguidor de Cursor (Efecto Cyber Subtle) -->
+    <div id="cursor-glow" class="pointer-events-none fixed z-0 w-96 h-96 rounded-full bg-cyan-500/5 blur-[120px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out"></div>
+
+    <!-- Header / Navbar Sticky -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-cyber-dark/80 backdrop-blur-xl transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          
+          <!-- Brand Logo -->
+          <a href="#inicio" class="flex items-center gap-3 group" aria-label="Juan Pablo Castro, Ir a inicio">
+            <div class="relative flex items-center justify-center w-11 h-11 rounded-xl glass-panel border border-cyber-cyan/30 text-cyber-cyan font-mono text-sm font-bold group-hover:border-cyber-cyan group-hover:shadow-[0_0_15px_rgba(0,242,254,0.4)] transition-all duration-300">
+              JP
+              <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyber-green rounded-full animate-ping"></span>
+              <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyber-green rounded-full"></span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-bold text-slate-100 text-sm tracking-tight group-hover:text-cyber-cyan transition-colors">Juan Pablo Castro</span>
+              <span class="font-mono text-[10px] text-cyber-cyan/80 tracking-wider uppercase">Dev & System Tech</span>
+            </div>
+          </a>
+
+          <!-- Nav Links Desktop -->
+          <nav class="hidden md:flex items-center gap-1 glass-panel px-4 py-1.5 rounded-full border-slate-800" aria-label="Navegación Principal">
+            <a href="#perfil" class="nav-link px-4 py-2 text-xs font-mono text-slate-300 hover:text-cyber-cyan rounded-full hover:bg-slate-800/50 transition-all">Perfil</a>
+            <a href="#proyectos" class="nav-link px-4 py-2 text-xs font-mono text-slate-300 hover:text-cyber-cyan rounded-full hover:bg-slate-800/50 transition-all">Proyectos</a>
+            <a href="#recorrido" class="nav-link px-4 py-2 text-xs font-mono text-slate-300 hover:text-cyber-cyan rounded-full hover:bg-slate-800/50 transition-all">Recorrido</a>
+            <a href="#habilidades" class="nav-link px-4 py-2 text-xs font-mono text-slate-300 hover:text-cyber-cyan rounded-full hover:bg-slate-800/50 transition-all">Habilidades</a>
+          </nav>
+
+          <!-- Contact CTA Nav -->
+          <div class="hidden md:flex items-center gap-4">
+            <a href="#contacto" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-mono font-medium rounded-xl group bg-gradient-to-br from-cyber-cyan to-cyber-blue group-hover:from-cyber-cyan group-hover:to-cyber-green hover:text-white dark:text-white focus:ring-2 focus:outline-none focus:ring-cyan-500">
+              <span class="relative px-4 py-2 transition-all ease-in duration-75 bg-cyber-dark rounded-[10px] group-hover:bg-opacity-0">
+                Hablemos <span class="inline-block transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+              </span>
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none border border-slate-800" aria-expanded="false" aria-label="Abrir Menú">
+            <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Nav -->
+      <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-cyber-dark/95 backdrop-blur-2xl px-4 pt-2 pb-6 space-y-2">
+        <a href="#perfil" class="nav-link block px-3 py-2.5 rounded-lg text-sm font-mono text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan">Perfil</a>
+        <a href="#proyectos" class="block px-3 py-2.5 rounded-lg text-sm font-mono text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan">Proyectos</a>
+        <a href="#recorrido" class="block px-3 py-2.5 rounded-lg text-sm font-mono text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan">Recorrido</a>
+        <a href="#habilidades" class="block px-3 py-2.5 rounded-lg text-sm font-mono text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan">Habilidades</a>
+        <a href="#contacto" class="block mt-4 text-center px-4 py-3 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-blue text-cyber-dark font-mono font-bold text-xs uppercase">Hablemos ↗</a>
+      </div>
+    </header>
+
+    <main id="contenido" class="relative z-10">
+
+      <!-- HERO SECTION CON ANIMACIÓN DE PERSONA CON COMPUTADOR -->
+      <section id="inicio" class="relative min-h-[calc(100vh-80px)] flex items-center justify-center py-12 lg:py-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            <!-- Hero Left: Texto & CTAs -->
+            <div class="lg:col-span-7 flex flex-col items-start space-y-6">
+              
+              <!-- Badge "Disponible / Campuslands" -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyber-cyan/30 text-cyber-cyan text-xs font-mono tracking-wider uppercase">
+                <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+                <span>Desarrollador en formación — Campuslands</span>
+              </div>
+
+              <!-- Titular Impactante -->
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-100 leading-[1.08]">
+                Pienso en lógica.<br>
+                <span class="grad-text-cyan">Construyo en código.</span>
+              </h1>
+
+              <!-- Descripción Breve -->
+              <p class="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed font-normal">
+                Soy <strong class="text-slate-200 font-semibold">Juan Pablo Castro</strong>, técnico en sistemas y apasionado por la programación. Transformo problemas complejos en software limpio, optimizado y escalable.
+              </p>
+
+              <!-- Botones de Acción principales -->
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <a href="#proyectos" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyber-cyan via-cyber-blue to-cyber-green text-cyber-dark font-extrabold text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(0,242,254,0.3)] hover:shadow-[0_0_30px_rgba(0,242,254,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center gap-2">
+                  <span>Explorar Proyectos</span>
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                </a>
+                <a href="mailto:juancastrom55@gmail.com" class="px-6 py-3.5 rounded-xl glass-panel text-slate-200 hover:text-cyber-cyan border border-slate-700 hover:border-cyber-cyan/50 font-mono text-xs font-semibold tracking-wider uppercase transition-all duration-200 flex items-center gap-2">
+                  <span>Escríbeme</span>
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+              </div>
+
+              <!-- Ubicación e Identidad -->
+              <div class="pt-4 flex items-center gap-6 text-xs font-mono text-slate-500 border-t border-slate-800/80 w-full max-w-md">
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-cyber-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  Pinchote / San Gil, Colombia
+                </span>
+                <span class="flex items-center gap-1.5 text-cyber-green">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span>
+                  Raven Tech Co-founder
+                </span>
+              </div>
+
+            </div>
+
+            <!-- Hero Right: ILUSTRACIÓN ANIMADA DEV + LAPTOP + CÓDIGO NEÓN -->
+            <div class="lg:col-span-5 relative flex items-center justify-center">
+              <div class="hero-dev-wrapper relative w-full max-w-[480px]">
+                
+                <!-- Aura de Luz Neón en Fondo -->
+                <div class="absolute -inset-4 bg-gradient-to-r from-cyber-cyan/20 via-cyber-blue/20 to-cyber-purple/20 rounded-full blur-3xl opacity-70 animate-pulse"></div>
+
+                <!-- Ilustración SVG del Desarrollador con Laptop -->
+                <div class="relative glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-cyan/30 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden">
+                  
+                  <!-- Floating UI Tag Header -->
+                  <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6 font-mono text-[11px] text-slate-400">
+                    <span class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-cyber-green/80"></span>
+                    </span>
+                    <span class="text-cyber-cyan">juanpablo_workspace.dev</span>
+                  </div>
+
+                  <!-- SVG Persona + Computador + Glow + Partículas -->
+                  <svg viewBox="0 0 500 400" class="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="laptopGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#4facfe" stop-opacity="0"/>
+                      </linearGradient>
+                      <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1e293b"/>
+                        <stop offset="100%" stop-color="#0f172a"/>
+                      </linearGradient>
+                      <linearGradient id="screenBeam" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="#00f2fe" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+
+                    <!-- Silla Ergonómica / Espaldar -->
+                    <rect x="180" y="140" width="140" height="200" rx="20" fill="#020617" stroke="#1e293b" stroke-width="4"/>
+                    <rect x="235" y="320" width="30" height="70" fill="#0f172a"/>
+                    <path d="M 180 380 L 320 380" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+
+                    <!-- Persona: Torso y Cabeza -->
+                    <!-- Cabeza / Pelo -->
+                    <circle cx="250" cy="120" r="38" fill="#1e293b" stroke="#00f2fe" stroke-width="1.5"/>
+                    <!-- Audífonos Dev -->
+                    <path d="M 210 120 A 40 40 0 0 1 290 120" fill="none" stroke="#00f2fe" stroke-width="5" stroke-linecap="round"/>
+                    <rect x="205" y="110" width="10" height="20" rx="3" fill="#00f2fe"/>
+                    <rect x="285" y="110" width="10" height="20" rx="3" fill="#00f2fe"/>
+
+                    <!-- Cara / Silueta con luz de la pantalla -->
+                    <circle cx="250" cy="122" r="30" fill="#0f172a"/>
+                    <!-- Lentes Neón Cyber -->
+                    <rect x="230" y="115" width="18" height="12" rx="2" fill="none" stroke="#00f2fe" stroke-width="2"/>
+                    <rect x="252" y="115" width="18" height="12" rx="2" fill="none" stroke="#00f2fe" stroke-width="2"/>
+                    <line x1="248" y1="120" x2="252" y2="120" stroke="#00f2fe" stroke-width="2"/>
+
+                    <!-- Cuerpo / Camiseta -->
+                    <path d="M 200 170 Q 250 160 300 170 L 320 280 L 180 280 Z" fill="url(#bodyGrad)" stroke="#334155" stroke-width="2"/>
+                    <!-- Logo "JP" en camiseta -->
+                    <text x="250" y="220" font-family="monospace" font-size="14" font-weight="bold" fill="#00f2fe" text-anchor="middle" opacity="0.6">&lt;JP/&gt;</text>
+
+                    <!-- Haz de Luz Pantalla Laptop emanando hacia el rostro -->
+                    <polygon points="150,270 350,270 390,120 110,120" fill="url(#screenBeam)" class="screen-glow"/>
+
+                    <!-- Escritorio / Mesa -->
+                    <rect x="50" y="300" width="400" height="14" rx="4" fill="#0f172a" stroke="#00f2fe" stroke-width="1" stroke-opacity="0.3"/>
+                    <rect x="70" y="314" width="12" height="70" fill="#020617"/>
+                    <rect x="410" y="314" width="12" height="70" fill="#020617"/>
+
+                    <!-- Laptop Abra / Pantalla y Teclado -->
+                    <!-- Base teclado -->
+                    <path d="M 170 300 L 330 300 L 350 308 L 150 308 Z" fill="#1e293b" stroke="#00f2fe" stroke-width="1.5"/>
+                    <rect x="230" y="302" width="40" height="4" fill="#00f2fe" opacity="0.8"/> <!-- Touchpad -->
+
+                    <!-- Pantalla Abierta -->
+                    <rect x="175" y="190" width="150" height="105" rx="6" fill="#080d1a" stroke="#00f2fe" stroke-width="2"/>
+                    <!-- Glow Pantalla -->
+                    <rect x="180" y="195" width="140" height="95" rx="4" fill="#020617"/>
+
+                    <!-- Código simulación dentro de la pantalla laptop -->
+                    <g font-family="monospace" font-size="7" fill="#00f2fe" opacity="0.9">
+                      <text x="186" y="208" fill="#ff79c6">def <tspan fill="#50fa7b font-weight="bold"">solve</tspan>(logic):</text>
+                      <text x="194" y="218" fill="#f1fa8c">&nbsp;return logic + code</text>
+                      <text x="186" y="230" fill="#bd93f9">class <tspan fill="#8be9fd">Dev</tspan>:</text>
+                      <text x="194" y="240" fill="#ffb86c">&nbsp;status = "Building..."</text>
+                      <text x="194" y="250" fill="#50fa7b">&nbsp;stack = ["Python", "Git"]</text>
+                      <!-- Cursor titilante en pantalla -->
+                      <rect x="194" y="258" width="5" height="7" fill="#00ff87">
+                        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+                      </rect>
+                    </g>
+
+                    <!-- Elementos Flotantes / Partículas de Código Alrededor -->
+                    <g font-family="monospace" font-size="11" font-weight="bold">
+                      <text x="60" y="140" fill="#00f2fe" class="floating-code-1">&lt;python&gt;</text>
+                      <text x="370" y="160" fill="#00ff87" class="floating-code-2">{git: 'main'}</text>
+                      <text x="80" y="240" fill="#4facfe" class="floating-code-3">01011001</text>
+                    </g>
+
+                    <!-- Taza de Café Tech -->
+                    <rect x="370" y="280" width="16" height="20" rx="3" fill="#1e293b" stroke="#00f2fe" stroke-width="1"/>
+                    <path d="M 386 285 C 392 285, 392 295, 386 295" fill="none" stroke="#00f2fe" stroke-width="1.5"/>
+                    <path d="M 375 275 Q 378 270 375 265" stroke="#94a3b8" stroke-width="1" fill="none" opacity="0.5"/>
+                  </svg>
+
+                  <!-- Widget Flotante Informativo inferior -->
+                  <div class="mt-4 flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-xs font-mono">
+                    <span class="flex items-center gap-2 text-slate-300">
+                      <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span>
+                      Status: Compilando proyectos
+                    </span>
+                    <span class="text-cyber-green">100% Lógica</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- TICKER MARQUEE INFINITO TECNOLÓGICO -->
+      <div class="w-full border-y border-slate-800/80 bg-slate-950/60 backdrop-blur-md py-4 overflow-hidden">
+        <div class="ticker-animate flex items-center gap-12 text-slate-400 font-mono text-xs uppercase tracking-widest">
+          <span class="flex items-center gap-3"><span class="text-cyber-cyan">✳</span> Python 3</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-green">✳</span> PSeInt Lógica</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-blue">✳</span> Git & GitHub</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-cyan">✳</span> Linux / Bash</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-green">✳</span> Mantenimiento de Sistemas</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-blue">✳</span> Diagnóstico Hardware</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-cyan">✳</span> Campuslands Dev</span>
+          <!-- Repetidos para el scroll infinito suave -->
+          <span class="flex items-center gap-3"><span class="text-cyber-cyan">✳</span> Python 3</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-green">✳</span> PSeInt Lógica</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-blue">✳</span> Git & GitHub</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-cyan">✳</span> Linux / Bash</span>
+          <span class="flex items-center gap-3"><span class="text-cyber-green">✳</span> Mantenimiento de Sistemas</span>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 01: PERFIL / ACERCA DE MÍ -->
+      <section id="perfil" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Izquierda: Etiqueta de Sección Sticky -->
+            <div class="lg:col-span-4 reveal">
+              <div class="sticky top-28 space-y-4">
+                <span class="font-mono text-xs text-cyber-cyan tracking-widest uppercase">Contexto & Base</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">Curiosidad técnica.<br><span class="grad-text-cyan">Base práctica.</span></h2>
+                <div class="p-4 rounded-2xl glass-panel card-hover-effect border border-slate-800 space-y-2 font-mono text-xs text-slate-400">
+                  <p class="flex items-center gap-2 text-slate-200">
+                    <svg class="w-4 h-4 text-cyber-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    Ubicación: Santander, Colombia
+                  </p>
+                  <p class="flex items-center gap-2 text-cyber-green">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Enfoque: Software + Arquitectura Sistemas
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Derecha: Texto de Descripción e Historias -->
+            <div class="lg:col-span-8 space-y-8 text-slate-300 text-base sm:text-lg leading-relaxed reveal">
+              <p class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800/80">
+                Mi camino en la tecnología comenzó desde el corazón de la infraestructura: <strong class="text-white">diagnosticar, ensamblar y comprender la arquitectura interna de los computadores</strong>. Esa curiosidad natural me impulsó a dar el siguiente salto: controlar el hardware a través del desarrollo de software y la lógica algorítmica.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-2xl glass-panel card-hover-effect border border-slate-800 transition-all">
+                  <div class="w-10 h-10 rounded-xl bg-cyber-cyan/10 flex items-center justify-center text-cyber-cyan font-bold font-mono mb-4">01</div>
+                  <h3 class="text-slate-100 font-bold text-lg mb-2">Formación en Campuslands</h3>
+                  <p class="text-sm text-slate-400">Desarrollando habilidades avanzadas en lógica de programación, lenguajes estructurados y trabajo colaborativo bajo estándares de la industria.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl glass-panel card-hover-effect border border-slate-800 transition-all">
+                  <div class="w-10 h-10 rounded-xl bg-cyber-green/10 flex items-center justify-center text-cyber-green font-bold font-mono mb-4">02</div>
+                  <h3 class="text-slate-100 font-bold text-lg mb-2">Co-fundador en Raven Tech</h3>
+                  <p class="text-sm text-slate-400">Colectivo tecnológico estudiantil creado para colaborar, estructurar software desde cero e intercambiar soluciones de ingeniería.</p>
+                </div>
+              </div>
+
+              <!-- Cita Personal Destacada -->
+              <blockquote class="p-6 rounded-2xl border-l-4 border-cyber-cyan bg-slate-900/60 font-mono text-sm text-slate-300 italic">
+                "No necesito saberlo todo para empezar. Necesito curiosidad insaciable, constancia técnica y determinación para encontrar la mejor solución."
+              </blockquote>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TERMINAL SHOWCASE INTERACTIVA (CODE DEMO NEÓN) -->
+      <section class="py-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+          <div class="glass-panel rounded-2xl border border-cyber-cyan/30 shadow-[0_0_50px_rgba(0,0,0,0.6)] overflow-hidden">
+            
+            <!-- Terminal Header -->
+            <div class="flex items-center justify-between px-5 py-3.5 bg-slate-950/80 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-cyber-green/80 inline-block"></span>
+                <span class="ml-2 font-mono text-xs text-slate-400">juan-pablo.py — VS Code Neon</span>
+              </div>
+              <span class="font-mono text-[10px] text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-1 rounded-md border border-cyber-cyan/20">Python 3.12</span>
+            </div>
+
+            <!-- Terminal Code Body -->
+            <div class="p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto bg-slate-950/90 text-slate-300">
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">01</span>
+                <span><span class="text-purple-400">class</span> <span class="text-cyber-cyan font-bold">DesarrolladorSoftware</span>:</span>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">02</span>
+                <span>&nbsp;&nbsp;<span class="text-slate-500">def</span> <span class="text-blue-400">__init__</span>(<span class="text-orange-300">self</span>):</span>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">03</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.nombre = <span class="text-cyber-green">"Juan Pablo Castro"</span></span>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">04</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.motto = <span class="text-cyber-green">"Lógica + Constancia + Código"</span></span>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">05</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.comunidad = <span class="text-cyber-green">"Raven Tech Co-Founder"</span></span>
+              </div>
+              <div class="flex gap-4"><span class="text-slate-600 select-none text-right w-6">06</span><span></span></div>
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">07</span>
+                <span>&nbsp;&nbsp;<span class="text-purple-400">def</span> <span class="text-cyber-cyan">resolver_problema</span>(<span class="text-orange-300">self</span>, desafio):</span>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">08</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">return</span> f<span class="text-cyber-green">"Solución optimizada para {desafio}"</span></span>
+              </div>
+              <div class="flex gap-4"><span class="text-slate-600 select-none text-right w-6">09</span><span></span></div>
+              <div class="flex gap-4">
+                <span class="text-slate-600 select-none text-right w-6">10</span>
+                <span class="text-slate-500 italic"># Ejecutando ciclo continuo de aprendizaje...</span>
+              </div>
+            </div>
+
+            <!-- Terminal Footer Status -->
+            <div class="flex items-center justify-between px-5 py-2.5 bg-slate-900 border-t border-slate-800 font-mono text-[11px] text-slate-400">
+              <span class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-cyber-green"></span>
+                Terminal Lista · UTF-8
+              </span>
+              <span class="text-cyber-cyan">Ready to code</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 02: PROYECTOS CON FILTRADO DINÁMICO UI/UX -->
+      <section id="proyectos" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <!-- Section Header -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+            <div>
+              <span class="font-mono text-xs text-cyber-cyan tracking-widest uppercase">En práctica</span>
+              <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight mt-2">Aprender haciendo.</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md">Proyectos académicos y de colectivo donde aplico algoritmos, mantenimiento preventivo y lógica pura.</p>
+          </div>
+
+          <!-- Botones de Filtro -->
+          <div class="flex items-center gap-3 mb-10 overflow-x-auto pb-2 reveal" role="group" aria-label="Filtrar Proyectos">
+            <button class="filter-btn active px-5 py-2 rounded-xl font-mono text-xs font-semibold border border-cyber-cyan bg-cyber-cyan text-cyber-dark transition-all duration-200" data-filter="all">Todo (4)</button>
+            <button class="filter-btn px-5 py-2 rounded-xl font-mono text-xs font-semibold border border-slate-800 glass-panel text-slate-300 hover:border-cyber-cyan/50 hover:text-cyber-cyan transition-all duration-200" data-filter="software">Software & Lógica</button>
+            <button class="filter-btn px-5 py-2 rounded-xl font-mono text-xs font-semibold border border-slate-800 glass-panel text-slate-300 hover:border-cyber-cyan/50 hover:text-cyber-cyan transition-all duration-200" data-filter="systems">Sistemas & Hardware</button>
+          </div>
+
+          <!-- Grid de Proyectos -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Card 01: Raven Tech -->
+            <article class="project-card glass-panel glass-panel-hover rounded-3xl p-8 flex flex-col justify-between border border-slate-800 reveal" data-category="software">
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/20">Colectivo Tech</span>
+                  <span class="font-mono text-xs text-slate-500">01 / 04</span>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-100 mb-3 group-hover:text-cyber-cyan transition-colors">Raven Tech</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                  Co-fundé este colectivo estudiantil de desarrollo en Campuslands. Colaboramos en el diseño de software, definición de arquitectura y creación de identidad de marca para proyectos colaborativos.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 font-mono text-[11px]">
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Campuslands</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Liderazgo</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Git / GitHub</span>
+              </div>
+            </article>
+
+            <!-- Card 02: Algoritmos Python -->
+            <article class="project-card glass-panel glass-panel-hover rounded-3xl p-8 flex flex-col justify-between border border-slate-800 reveal" data-category="software">
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-cyber-green/10 text-cyber-green border border-cyber-green/20">Desarrollo Python</span>
+                  <span class="font-mono text-xs text-slate-500">02 / 04</span>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-100 mb-3">Algoritmos en Python</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                  Conjunto de ejercicios y módulos diseñados para desglosar problemas matemáticos e informáticos complejos en pasos estructurados usando buenas prácticas en Python.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 font-mono text-[11px]">
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-cyber-green">Python 3</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Estructuras Datos</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">POO</span>
+              </div>
+            </article>
+
+            <!-- Card 03: PSeInt Lógica -->
+            <article class="project-card glass-panel glass-panel-hover rounded-3xl p-8 flex flex-col justify-between border border-slate-800 reveal" data-category="software">
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-cyber-blue/10 text-cyber-blue border border-cyber-blue/20">Lógica de Base</span>
+                  <span class="font-mono text-xs text-slate-500">03 / 04</span>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-100 mb-3">PSeInt & Pseudocódigo</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                  Dominio de algoritmos estructurados y diagramación lógica mediante pseudocódigo antes de realizar la migración y compilación hacia lenguajes de producción.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 font-mono text-[11px]">
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-cyber-blue">PSeInt</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Flujogramas</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Fundamentos</span>
+              </div>
+            </article>
+
+            <!-- Card 04: Diagnóstico y Mantenimiento -->
+            <article class="project-card glass-panel glass-panel-hover rounded-3xl p-8 flex flex-col justify-between border border-slate-800 reveal" data-category="systems">
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20">Sistemas & SENA</span>
+                  <span class="font-mono text-xs text-slate-500">04 / 04</span>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-100 mb-3">Diagnóstico & Hardware</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                  Prácticas aplicadas de mantenimiento preventivo/correctivo, ensamblaje de componentes informáticos y soporte técnico especializado a nivel de infraestructura.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 font-mono text-[11px]">
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-purple-400">SENA Tech</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Hardware</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Mantenimiento</span>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECCIÓN 03: RECORRIDO (LÍNEA DE TIEMPO INTERACTIVA) -->
+      <section id="recorrido" class="py-24 relative bg-slate-950/40 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="reveal mb-16">
+            <span class="font-mono text-xs text-cyber-cyan tracking-widest uppercase">Formación & Experiencia</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight mt-2">La base también importa.</h2>
+            <p class="text-slate-400 text-sm max-w-xl mt-3">Combinación sólida de conocimientos técnicos en sistemas con entrenamiento continuo en ingeniería de software.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Columna Experiencia -->
+            <div class="space-y-6 reveal">
+              <h3 class="text-xl font-bold text-slate-100 flex items-center gap-3 border-b border-slate-800 pb-4 font-mono">
+                <span class="w-3 h-3 rounded-full bg-cyber-cyan"></span>
+                Experiencia & Liderazgo
+              </h3>
+
+              <div class="relative pl-6 border-l-2 border-slate-800 space-y-8">
+                
+                <div class="relative group">
+                  <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-cyber-dark border-2 border-cyber-cyan group-hover:scale-125 transition-transform"></span>
+                  <span class="font-mono text-xs text-cyber-cyan">2026 — Presente</span>
+                  <h4 class="text-lg font-bold text-slate-100 mt-1">Co-fundador & Desarrollador</h4>
+                  <p class="text-xs font-mono text-cyber-green mb-2">Raven Tech · Campuslands</p>
+                  <p class="text-sm text-slate-400 leading-relaxed">Co-creación de un colectivo tecnológico para diseñar proyectos, promover la colaboración entre estudiantes y resolver retos técnicos complejos.</p>
+                </div>
+
+                <div class="relative group">
+                  <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-cyber-dark border-2 border-slate-600 group-hover:scale-125 transition-transform"></span>
+                  <span class="font-mono text-xs text-slate-500">Proyectos Autónomos</span>
+                  <h4 class="text-lg font-bold text-slate-100 mt-1">Desarrollo Algorítmico & Scripts</h4>
+                  <p class="text-xs font-mono text-slate-400 mb-2">Prácticas Independientes</p>
+                  <p class="text-sm text-slate-400 leading-relaxed">Implementación de estructuras de datos en Python, control de versiones profesional en Git/GitHub y administración con terminal Bash en Linux.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Columna Educación -->
+            <div class="space-y-6 reveal">
+              <h3 class="text-xl font-bold text-slate-100 flex items-center gap-3 border-b border-slate-800 pb-4 font-mono">
+                <span class="w-3 h-3 rounded-full bg-cyber-green"></span>
+                Educación Técnica
+              </h3>
+
+              <div class="relative pl-6 border-l-2 border-slate-800 space-y-8">
+
+                <div class="relative group">
+                  <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-cyber-dark border-2 border-cyber-green group-hover:scale-125 transition-transform"></span>
+                  <span class="font-mono text-xs text-cyber-green">2026 — Presente</span>
+                  <h4 class="text-lg font-bold text-slate-100 mt-1">Técnico en Desarrollo de Software</h4>
+                  <p class="text-xs font-mono text-slate-400 mb-2">Campuslands</p>
+                  <p class="text-sm text-slate-400 leading-relaxed">Formación intensiva en desarrollo de software moderno, programación estructurada, metodologías ágiles y control de versiones Git.</p>
+                </div>
+
+                <div class="relative group">
+                  <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-cyber-dark border-2 border-slate-600 group-hover:scale-125 transition-transform"></span>
+                  <span class="font-mono text-xs text-slate-500">Graduado en 2025</span>
+                  <h4 class="text-lg font-bold text-slate-100 mt-1">Técnico en Sistemas & Mantenimiento</h4>
+                  <p class="text-xs font-mono text-slate-400 mb-2">SENA</p>
+                  <p class="text-sm text-slate-400 leading-relaxed">Certificación en ensamblaje de hardware, arquitectura de computadores, soporte preventivo/correctivo y redes locales.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECCIÓN 04: HABILIDADES & KIT TÉCNICO -->
+      <section id="habilidades" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="reveal mb-16">
+            <span class="font-mono text-xs text-cyber-cyan tracking-widest uppercase">Herramientas & Skillset</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight mt-2">Un kit en constante evolución.</h2>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Chips de Tecnologías -->
+            <div class="lg:col-span-7 space-y-8 reveal">
+              
+              <div class="space-y-3">
+                <h3 class="font-mono text-xs uppercase tracking-wider text-slate-400">Lenguajes & Lógica</h3>
+                <div class="flex flex-wrap gap-3">
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-cyber-cyan/30 text-cyber-cyan font-mono text-xs font-semibold hover:scale-105 transition-transform">Python 3</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-green transition-all">PSeInt</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-blue transition-all">Algoritmos</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-cyan transition-all">Pseudocódigo</span>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <h3 class="font-mono text-xs uppercase tracking-wider text-slate-400">Herramientas & Entorno</h3>
+                <div class="flex flex-wrap gap-3">
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-cyan transition-all">Git</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-cyan transition-all">GitHub</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-cyan transition-all">VS Code</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-cyan transition-all">Linux / Bash</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-cyber-cyan transition-all">Claude Code</span>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <h3 class="font-mono text-xs uppercase tracking-wider text-slate-400">Sistemas & Hardware</h3>
+                <div class="flex flex-wrap gap-3">
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-purple-500/30 text-purple-300 font-mono text-xs font-semibold hover:scale-105 transition-transform">Mantenimiento PC</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-purple-400 transition-all">Diagnóstico Hardware</span>
+                  <span class="px-4 py-2 rounded-xl glass-panel border border-slate-800 text-slate-200 font-mono text-xs font-semibold hover:border-purple-400 transition-all">Soporte Técnico</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Soft Skills y Competencias Personal -->
+            <div class="lg:col-span-5 glass-panel card-hover-effect p-8 rounded-3xl border border-slate-800 reveal space-y-6">
+              <h3 class="text-xl font-bold text-slate-100 font-mono flex items-center justify-between border-b border-slate-800 pb-4">
+                <span>Competencias</span>
+                <span class="text-cyber-green text-xs">Soft Skills</span>
+              </h3>
+
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/60 text-sm text-slate-300 font-mono">
+                  <span>Trabajo en equipo</span>
+                  <span class="text-cyber-cyan font-bold">100%</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/60 text-sm text-slate-300 font-mono">
+                  <span>Resolución de problemas</span>
+                  <span class="text-cyber-cyan font-bold">100%</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/60 text-sm text-slate-300 font-mono">
+                  <span>Aprendizaje autodidacta</span>
+                  <span class="text-cyber-green font-bold">Constante</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/60 text-sm text-slate-300 font-mono">
+                  <span>Atención al detalle</span>
+                  <span class="text-cyber-cyan font-bold">Alto</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECCIÓN 05: CONTACTO PREMIUM -->
+      <section id="contacto" class="py-24 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+          
+          <div class="relative glass-panel rounded-3xl p-8 sm:p-12 border border-cyber-cyan/40 shadow-[0_0_60px_rgba(0,242,254,0.15)] overflow-hidden">
+            
+            <div class="absolute -top-24 -right-24 w-72 h-72 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              
+              <div class="md:col-span-8 space-y-4">
+                <span class="font-mono text-xs text-cyber-cyan tracking-widest uppercase">Contacto</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight">¿Construimos algo juntos?</h2>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                  Estoy disponible para nuevos proyectos, colaboraciones en desarrollo o vacantes técnicas. ¡Hablemos!
+                </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 font-mono text-xs">
+                  <a href="mailto:juancastrom55@gmail.com" class="flex items-center gap-2 text-slate-300 hover:text-cyber-cyan transition-colors">
+                    <svg class="w-4 h-4 text-cyber-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    juancastrom55@gmail.com
+                  </a>
+                  <a href="https://github.com/juan-1332" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 hover:text-cyber-cyan transition-colors">
+                    <svg class="w-4 h-4 text-cyber-green" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    GitHub · @juan-1332
+                  </a>
+                </div>
+              </div>
+
+              <div class="md:col-span-4 flex justify-start md:justify-end">
+                <a href="mailto:juancastrom55@gmail.com" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyber-cyan via-cyber-blue to-cyber-green text-cyber-dark font-extrabold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(0,242,254,0.4)] hover:scale-105 active:scale-95 transition-all duration-200">
+                  Enviar Correo ↗
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500">
+        <p>© <span id="year">2026</span> Juan Pablo Castro · Hecho con curiosidad y código limpio.</p>
+        <a href="#inicio" class="text-slate-400 hover:text-cyber-cyan transition-colors">Volver arriba ↑</a>
+      </div>
+    </footer>
+
+    <!-- LÓGICA DE INTERACCIÓN Y NAVEGACIÓN EN JS -->
+    <script>
+      // 1. Menú Móvil
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+
+      mobileBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('hidden');
+        if (isOpen) {
+          mobileMenu.classList.remove('hidden');
+          iconOpen.classList.add('hidden');
+          iconClose.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        }
+      });
+
+      // Cerrar menú móvil al hacer clic en un enlace
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        });
+      });
+
+      // 2. Smooth Scrolling con Offset Adaptado
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const headerOffset = 85;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // 3. Indicador de Sección Activa en Tiempo Real (IntersectionObserver)
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('header nav a.nav-link');
+
+      const sectionObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+      };
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              const href = link.getAttribute('href').substring(1);
+              if (href === currentId) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, sectionObserverOptions);
+
+      sections.forEach(section => sectionObserver.observe(section));
+
+      // 4. Luz de Cursor Seguidor (Glow Effect)
+      const cursorGlow = document.getElementById('cursor-glow');
+      window.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = `${e.clientX}px`;
+        cursorGlow.style.top = `${e.clientY}px`;
+      });
+
+      // 5. Filtrado de Proyectos
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+
+          // Estilos de botones activos
+          filterBtns.forEach(b => {
+            b.classList.remove('active', 'bg-cyber-cyan', 'text-cyber-dark', 'border-cyber-cyan');
+            b.classList.add('border-slate-800', 'text-slate-300');
+          });
+
+          btn.classList.add('active', 'bg-cyber-cyan', 'text-cyber-dark', 'border-cyber-cyan');
+          btn.classList.remove('border-slate-800', 'text-slate-300');
+
+          // Animación e invisibilidad de tarjetas
+          projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'flex';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 200);
+            }
+          });
+        });
+      });
+
+      // 6. Scroll Reveal (IntersectionObserver)
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      reveals.forEach(el => observer.observe(el));
+
+      // 7. Año Actualizado
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
